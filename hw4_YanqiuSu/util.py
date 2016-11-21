@@ -21,3 +21,25 @@ class PeriodicClosure:
   def stop(self):
     if self._timer:
       self._timer.cancel()
+
+
+def dest_id_in_snapshot(dest_id, snapshot):
+  for tuple in snapshot:
+    if dest_id == tuple[0]:
+      return True
+  return False
+
+def find_cost_to_dest(dest_id, snapshot):
+  for tuple in snapshot:
+    if dest_id == tuple[0]:
+      return tuple[2]
+  return -1
+
+def replace_tuple(new_tuple, snapshot):
+  for i in range(len(snapshot)):
+    if snapshot[i][0] == new_tuple[0]:
+      new_snapshot = snapshot[:i] + [tuple] + snapshot[i + 1:]
+      return new_snapshot
+  return snapshot
+
+
